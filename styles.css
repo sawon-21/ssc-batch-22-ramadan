@@ -1,0 +1,294 @@
+/* General Styles */
+body {
+    font-family: 'Scheherazade', serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333 !important;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #333 !important;
+    margin-left: 20px;
+}
+
+.nav-link:hover {
+    color: #007bff !important;
+}
+
+/* Home Section */
+.home-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('ramadan.gif') no-repeat center center/cover;
+    color: #fff;
+    padding: 150px 0;
+    text-align: center;
+}
+
+.home-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.home-section p {
+    font-size: 1.5rem;
+    animation: fadeIn 3s ease-in-out;
+}
+
+#countdown {
+    font-size: 2.5rem;
+    margin-top: 20px;
+    animation: fadeIn 4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Event Section */
+.event-section {
+    padding: 80px 0;
+    background-image: url('/location.jpg');
+    background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.event-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.event-section p {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Registration Section */
+.register-section {
+    padding: 80px 0;
+    background-image: url('/registration.jpeg');
+    background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.register-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-group label {
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+        success {
+            background-color: #28a745;
+            color: #fff;
+        }
+#participantsList {
+    margin-top: 30px;
+            background-image: url('/list.jpeg');
+    background-repeat: no-repeat;
+  background-size: auto;
+}
+
+#participantsList h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#participants {
+    list-style-type: none;
+    padding: 0;
+}
+
+#participants li {
+    background-color: #FAEDCB;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Gallery Section */
+.gallery-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.gallery-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.gallery-section img {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-section img:hover {
+    transform: scale(1.05);
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 80px 0;
+        background-image: url('/contract.jpeg');
+    background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-section ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.contact-section ul li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer p {
+    margin: 0;
+}
+
+        .countdown {
+            text-align: center;
+        }
+        .countdown h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #343a40;
+        }
+        .circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 5px;
+        }
+        .circle span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .circle small {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        
+        
+        
+
+
+#slider {
+  margin: 0 auto;
+  width: 80%;
+  overflow: hidden;
+}
+
+.slides {
+  overflow: hidden;
+  animation-name: fade;
+  animation-duration: 1s;
+  display: none;
+}
+
+.slides img {
+  width: 100%;
+  height: 300px; /* Set a fixed height for the images */
+  object-fit: cover; /* Maintain aspect ratio and cover the entire frame */
+}
+
+#dot {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dot {
+  display: inline-block;
+  border-radius: 50%;
+  background: #d3d3d3;
+  padding: 8px;
+  margin: 10px 5px;
+}
+
+.active {
+  background: black;
+}
+
+@media (max-width: 567px) {
+  #slider {
+    width: 100%;
+  }
+}
+
+#heading {
+  display: block;
+  text-align: center;
+  font-size: 2em;
+  margin: 10px 0px;
+}

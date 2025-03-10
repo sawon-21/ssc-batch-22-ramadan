@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইফতার মাহফিল - SSC Batch 2022</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ইফতার মাহফিল</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#home">হোম</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#event">ইভেন্ট</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#register">রেজিস্ট্রেশন</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">গ্যালারি</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">যোগাযোগ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Home Section -->
+    <section id="home" class="home-section">
+        <div class="container">
+            <h1>ইফতার মাহফিল  <i>SSC Batch 2022</i></h1>
+            <p>২৭শে রমজান, ২৮শে মার্চ ২০২৫</p>
+            <p>রোজ: বৃহস্পতিবার</p><br>
+          <p> <button class="btn btn-primary"><a href="#register" style="color:#fff">রেজিস্ট্রেশন করুন ⇨</a></button></p>
+            <div id="countdown"></div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="event" class="event-section">
+        <div class="container">
+            <h2> বিস্তারিত তথ্য</h2>
+            <p><strong>তারিখ:</strong> ২৭শে রমজান, ২৮শে মার্চ ২০২৫</p>
+            <p><strong>রোজ:</strong> বৃহস্পতিবার </p>
+            <p><strong>স্থান:</strong> গার্লস স্কুল মাঠ, স্কুলহাট</p>
+            <p><strong>সময়:</strong> বিকাল ৪:০০ টা</p>
+           <p><strong>ফি:</strong> মাত্র - ১০০/= টাকা</p>
+        </div>
+            <div class="countdown">
+        <div class="timer" id="timer">
+            <div class="circle">
+                <span id="days">০০</span>
+                <small>দিন</small>
+            </div>
+            <div class="circle">
+                <span id="hours">০০</span>
+                <small>ঘন্টা</small>
+            </div>
+            <div class="circle">
+                <span id="minutes">০০</span>
+                <small>মিনিট</small>
+            </div>
+            <div class="circle">
+                <span id="seconds">০০</span>
+                <small>সেকেন্ড</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date("March 28, 2025 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        const x = setInterval(function() {
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the countdown date
+            const distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the circles
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "<div class='circle'><span>আজ ইফতার মাহফিল </span></div>";
+            }
+        }, 1000);
+    </script>
+    </section>
+<audio id="successAudio" src="success-audio.mp3" type="audio/mpeg"></audio>
+    <!-- Registration Section -->
+    <section id="register" class="register-section">
+        <div class="container">
+            <h2>রেজিস্ট্রেশন</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name"><b>নাম: </b>*</label>
+                    <input type="text" pl
+                 placeholder=" আপনার সম্পূর্ণ নাম ইংরেজিতে "class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><b>মোবাইল নম্বর: * </b></label>
+                    <input type="number" placeholder="মোবাইল নাম্বার" class="form-control" id="phone" required>
+                </div>
+                <button type="submit" class="btn btn-primary">রেজিস্ট্রেশন করুন</button>
+                <a href="payment.html"class="btn btn-success">Payment করুন </a>
+            </form>
+            <div id="participantsList" class="mt-4">
+                <h3>রেজিস্ট্রেশনকৃত অংশগ্রহণকারী</h3>
+                <ul id="participants"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+
+  <span id="heading"><h2>গ্যালারি</h2> </span>
+<div id="slider">  
+<div class="slides">  
+  <img src="https://i.postimg.cc/v8qnL36v/verify.png" width="100%" />
+ </div>
+  
+  <div class="slides">  
+  <img src="https://blog.cognifit.com/wp-content/uploads/2019/11/hiking-900x300.jpg" width="100%" />
+</div>
+  
+  <div class="slides">  
+  <img src="https://travelfree.info/wp-content/uploads/2018/02/croatia-waterfall-in-deep-forest-of-Cr-12755165-900x300.jpg" width="100%" />
+</div> 
+  
+   <div class="slides">  
+  <img src="https://www.piemonturismo.it/site/wp-content/uploads/2014/07/13-laghi-grande.jpg" width="100%" />
+</div> 
+  
+<div class="slides">  
+  <img src="https://improvephotography.com/wp-content/uploads/2017/09/Julian-Baird-20170914-3-900px.jpg" width="100%" />
+</div>  
+  
+  <div id="dot"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+  <script>
+    var index = 0;
+var slides = document.querySelectorAll(".slides");
+var dot = document.querySelectorAll(".dot");
+
+function changeSlide(){
+
+  if(index<0){
+    index = slides.length-1;
+  }
+  
+  if(index>slides.length-1){
+    index = 0;
+  }
+  
+  for(let i=0;i<slides.length;i++){
+    slides[i].style.display = "none";
+    dot[i].classList.remove("active");
+  }
+  
+  slides[index].style.display= "block";
+  dot[index].classList.add("active");
+  
+  index++;
+  
+  setTimeout(changeSlide,4000);
+  
+}
+
+changeSlide();
+  </script>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>যোগাযোগ</h2>
+            <h5>আমাদের সাথে যোগাযোগ করুন:</h5>
+            <ul>
+                <li> <mark><b>ফোন: <a href="tel:+8801737556476">01737556476</a></b></mark></li>
+                <li> <mark><b>Messenger গ্রুপে যুক্ত হন।</b></mark></li>
+                <li><a  class="btn btn-primary" href="https://m.me/j/AbZ1KuNI0TIxfqhY/">☞ Join now</a></li>
+                <!-- Floating Messenger Icon -->
+<div class="floating-messenger">
+  <a href="tel:+8801737556476">
+    <i class="bi bi-telephone-fill"></i>
+</a> <br> <br>
+    <a href="https://m.me/j/AbZ1KuNI0TIxfqhY/" target="_blank" class="btn btn-primary">
+        <i class="fab fa-facebook-messenger"></i>
+    </a>
+</div>
+
+<!-- Custom CSS for floating icon -->
+<style>
+    .floating-messenger {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+
+    .floating-messenger a {
+        font-size: 20px;
+        background-color: #0084ff; /* Facebook Messenger blue */
+        color: white;
+        border-radius: 50%;
+        padding: 9px;
+        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+    }
+
+    .floating-messenger a:hover {
+        background-color: #006bb3;
+    }
+</style>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <a href="https://www.instagram.com/mehedi_al_hasan_sawon_21?igsh=MXQ4cW1vYzE5aDgy" style="color:yellow">Mehedi Al Hasan Sawon </a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+  import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
+    authDomain: "ssc22-4f7ae.firebaseapp.com",
+    databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
+    projectId: "ssc22-4f7ae",
+    storageBucket: "ssc22-4f7ae.firebasestorage.app",
+    messagingSenderId: "355526890032",
+    appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
+    measurementId: "G-GMHS7794LY"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const database = getDatabase(app);
+
+// Function to handle form submission and add participant to Firebase
+const submitRegistrationForm = (name, phone) => {
+    const participantRef = ref(database, 'participants');
+    const newParticipantRef = push(participantRef);
+    set(newParticipantRef, {
+        name: name,
+        phone: phone,
+        status: "UNPAID"
+    }).then(() => {
+        // Play success audio after successful registration
+        const successAudio = document.getElementById('successAudio');
+        successAudio.play();
+
+        alert("Participant Registered Successfully!");
+    }).catch((error) => {
+        alert("Error in Registration: " + error.message);
+    });
+};
+  // Function to fetch and display participants from Firebase
+  const fetchParticipants = () => {
+    const participantsRef = ref(database, 'participants');
+    onValue(participantsRef, (snapshot) => {
+      const participantsList = document.getElementById("participants");
+      participantsList.innerHTML = "";  // Clear existing list
+      const participants = snapshot.val();
+
+      if (participants) {
+        let serialNumber = 1; // Start serial number from 1
+        Object.keys(participants).forEach((id) => {
+          const participant = participants[id];
+          participantsList.innerHTML += `
+            <li class="list-group-item">
+              <strong>${serialNumber}. ${participant.name}</strong>
+              <span class="badge badge-${participant.status === "PAID" ? "success" : "warning"}">${participant.status}</span>
+            </li>
+          `;
+          serialNumber++; // Increment serial number for each participant
+        });
+      } else {
+        participantsList.innerHTML = "<li class='list-group-item'>No participants registered yet</li>";
+      }
+    });
+  };
+
+  // Call the fetchParticipants function on page load to display participants
+  window.onload = () => {
+    fetchParticipants();
+  };
+
+  // Handling the form submission
+  document.getElementById("registrationForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+
+    submitRegistrationForm(name, phone);
+  });
+</script>
+    <!-- Custom JS -->
+</body>
+</html>
