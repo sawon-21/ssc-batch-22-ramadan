@@ -136,10 +136,12 @@ body {
 }
 
 #participants li {
+  font-family: 'Poppins', sans-serif;
     background-color: #fff;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    border: solid blue;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 

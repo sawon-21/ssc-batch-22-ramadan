@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - SSC Batch 22</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- jsPDF & autoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        .navbar { background-color: #007bff !important; }
+        .navbar-brand { color: #fff !important; font-weight: bold; }
+        .container { max-width: 100%; padding: 15px; }
+        
+        /* Responsive Table */
+        .table-responsive { 
+            overflow-x: auto; 
+            white-space: nowrap; 
+        }
+        
+        /* Badge Colors */
+        .badge-success { background-color: #28a745; color: #fff; }
+        .badge-warning { background-color: #ffc107; color: #000; }
+
+        /* Action Buttons */
+        .btn-sm { padding: 8px 10px; font-size: 14px; }
+        
+        /* Modal Adjustments */
+        .modal-dialog { max-width: 90%; margin: auto; }
+        
+        /* Mobile-Friendly Buttons */
+        @media (max-width: 576px) {
+            h2 { font-size: 20px; }
+            .btn { font-size: 14px; padding: 10px; width: 100%; }
+            .table th, .table td { font-size: 14px; }
+        }
+    #dashboard{
+      font-family: 'Scheherazade', serif;
+    }
+    </style>
+</head>
+<body>
+    <!-- Admin Section -->
+    <section class="container mt-3">
+        <h2 class="text-center">Manage Participants</h2>
+<!-- Dashboard Section -->
+<div id="dashboard" class="row text-center mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-lg p-3 text-white bg-primary">
+            <h5 class="font-weight-bold">Total Participants</h5>
+            <h2 id="totalParticipants" class="font-weight-bold">0</h2>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-lg p-3 text-white bg-success">
+            <h5 class="font-weight-bold">Total Income</h5>
+            <h2 id="totalIncome" class="font-weight-bold">0 TK</h2>
+        </div>
+    </div>
+</div>
+        
+        <button class="btn btn-warning mb-3" id="downloadPdfBtn">Download PDF</button>
+        
+        <!-- Responsive Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Phone</th>
+                        <th>Name</th>
+                        <th>UID</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="participantsList"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editParticipantModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Participant</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editParticipantForm">
+                        <input type="hidden" id="editId">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" id="editName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" class="form-control" id="editPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control" id="editStatus" required>
+                                <option value="PAID">Paid</option>
+                                <option value="UNPAID">Unpaid</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getDatabase, ref, onValue, update, remove, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
+    authDomain: "ssc22-4f7ae.firebaseapp.com",
+    databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
+    projectId: "ssc22-4f7ae",
+    storageBucket: "ssc22-4f7ae.firebasestorage.app",
+    messagingSenderId: "355526890032",
+    appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
+    measurementId: "G-GMHS7794LY"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+// Fetch Participants & Update Dashboard
+const fetchParticipants = () => {
+    const participantsRef = ref(database, 'participants');
+    onValue(participantsRef, (snapshot) => {
+        const participantsList = document.getElementById("participantsList");
+        const totalParticipantsEl = document.getElementById("totalParticipants");
+        const totalIncomeEl = document.getElementById("totalIncome");
+
+        participantsList.innerHTML = "";
+        let totalParticipants = 0;
+        let totalIncome = 0;
+        const participants = snapshot.val();
+
+        if (participants) {
+            let serialNumber = 1;
+            for (const id in participants) {
+                const participant = participants[id];
+
+                // Count total participants
+                totalParticipants++;
+
+                // Calculate total income for PAID users
+                if (participant.status === "PAID") {
+                    totalIncome += 100;
+                }
+
+                participantsList.innerHTML += `
+                    <tr>
+                        <td>${serialNumber}</td>       
+                        <td>${participant.phone}</td>
+                        <td>${participant.name}</td>
+                        <td>${participant.uid}</td>
+                        <td><span class="badge badge-${participant.status === 'PAID' ? 'success' : 'warning'}">${participant.status}</span></td>
+                        <td>
+                            <button class="btn btn-info btn-sm" onclick="openEditModal('${id}')">Edit</button>
+                        </td>
+                    </tr>
+                `;
+                serialNumber++;
+            }
+        } else {
+            participantsList.innerHTML = `<tr><td colspan="6" class="text-center">No participants found.</td></tr>`;
+        }
+
+        // Update Dashboard Values
+        totalParticipantsEl.textContent = totalParticipants;
+        totalIncomeEl.textContent = totalIncome + " TK";
+    });
+};
+//<button class="btn btn-danger btn-sm" onclick="deleteParticipant('${id}')">Delete</button>
+
+        // Open Edit Modal
+        window.openEditModal = (id) => {
+            const participantRef = ref(database, `participants/${id}`);
+            get(participantRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const participant = snapshot.val();
+                    document.getElementById("editId").value = id;
+                    document.getElementById("editName").value = participant.name;
+                    document.getElementById("editPhone").value = participant.phone;
+                    document.getElementById("editStatus").value = participant.status;
+                    $('#editParticipantModal').modal('show');
+                }
+            });
+        };
+
+        // Save Changes
+        document.getElementById("saveChangesBtn").addEventListener("click", () => {
+            const id = document.getElementById("editId").value;
+            const name = document.getElementById("editName").value;
+            const phone = document.getElementById("editPhone").value;
+            const status = document.getElementById("editStatus").value;
+
+            if (id && name && phone && status) {
+                update(ref(database, `participants/${id}`), { name, phone, status }).then(() => {
+                    $('#editParticipantModal').modal('hide');
+                    fetchParticipants();
+                });
+            }
+        });
+
+        // Delete Participant
+        window.deleteParticipant = (id) => {
+            if (confirm("Are you sure you want to delete this participant?")) {
+                remove(ref(database, `participants/${id}`)).then(fetchParticipants);
+            }
+        };
+
+        // Download PDF
+        document.getElementById("downloadPdfBtn").addEventListener("click", () => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.autoTable({ html: 'table' });
+            doc.save("participants_list.pdf");
+        });
+
+        // Load Participants on page load
+        window.onload = fetchParticipants;
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

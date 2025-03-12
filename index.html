@@ -44,8 +44,8 @@
     <section id="home" class="home-section">
         <div class="container">
             <h1>ইফতার মাহফিল  <i>SSC Batch 2022</i></h1>
-            <p>২৭শে রমজান, ২৮শে মার্চ ২০২৫</p>
-            <p>রোজ: বৃহস্পতিবার</p><br>
+            <p>২৬শে রমজান, ২৭শে মার্চ ২০২৫</p>
+            <p>রোজ: বুধবার </p><br>
           <p> <button class="btn btn-primary"><a href="#register" style="color:#fff">রেজিস্ট্রেশন করুন ⇨</a></button></p>
             <div id="countdown"></div>
         </div>
@@ -55,8 +55,8 @@
     <section id="event" class="event-section">
         <div class="container">
             <h2> বিস্তারিত তথ্য</h2>
-            <p><strong>তারিখ:</strong> ২৭শে রমজান, ২৮শে মার্চ ২০২৫</p>
-            <p><strong>রোজ:</strong> বৃহস্পতিবার </p>
+            <p><strong>তারিখ:</strong> ২৬শে রমজান, ২৭শে মার্চ ২০২৫</p>
+            <p><strong>রোজ:</strong> বুধবার  </p>
             <p><strong>স্থান:</strong> গার্লস স্কুল মাঠ, স্কুলহাট</p>
             <p><strong>সময়:</strong> বিকাল ৪:০০ টা</p>
            <p><strong>ফি:</strong> মাত্র - ১০০/= টাকা</p>
@@ -87,7 +87,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
         // Set the date we're counting down to
-        const countDownDate = new Date("March 28, 2025 00:00:00").getTime();
+        const countDownDate = new Date("March 27, 2025 00:00:00").getTime();
 
         // Update the countdown every 1 second
         const x = setInterval(function() {
@@ -133,7 +133,7 @@
                     <input type="number" placeholder="মোবাইল নাম্বার" class="form-control" id="phone" required>
                 </div>
                 <button type="submit" class="btn btn-primary">রেজিস্ট্রেশন করুন</button>
-                <a href="payment.html"class="btn btn-success">Payment করুন </a>
+                <a href="payments.html"class="btn btn-success">Payment করুন </a>
             </form>
             <div id="participantsList" class="mt-4">
                 <h3>রেজিস্ট্রেশনকৃত অংশগ্রহণকারী</h3>
@@ -295,87 +295,90 @@ changeSlide();
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
-  import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
-    authDomain: "ssc22-4f7ae.firebaseapp.com",
-    databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
-    projectId: "ssc22-4f7ae",
-    storageBucket: "ssc22-4f7ae.firebasestorage.app",
-    messagingSenderId: "355526890032",
-    appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
-    measurementId: "G-GMHS7794LY"
-  };
+    const firebaseConfig = {
+        apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
+        authDomain: "ssc22-4f7ae.firebaseapp.com",
+        databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
+        projectId: "ssc22-4f7ae",
+        storageBucket: "ssc22-4f7ae.firebasestorage.app",
+        messagingSenderId: "355526890032",
+        appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
+        measurementId: "G-GMHS7794LY"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const database = getDatabase(app);
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
 
-// Function to handle form submission and add participant to Firebase
-const submitRegistrationForm = (name, phone) => {
-    const participantRef = ref(database, 'participants');
-    const newParticipantRef = push(participantRef);
-    set(newParticipantRef, {
-        name: name,
-        phone: phone,
-        status: "UNPAID"
-    }).then(() => {
-        // Play success audio after successful registration
-        const successAudio = document.getElementById('successAudio');
-        successAudio.play();
-
-        alert("Participant Registered Successfully!");
-    }).catch((error) => {
-        alert("Error in Registration: " + error.message);
-    });
-};
-  // Function to fetch and display participants from Firebase
-  const fetchParticipants = () => {
+const generateUID = async () => {
     const participantsRef = ref(database, 'participants');
-    onValue(participantsRef, (snapshot) => {
-      const participantsList = document.getElementById("participants");
-      participantsList.innerHTML = "";  // Clear existing list
-      const participants = snapshot.val();
+    const snapshot = await get(participantsRef);
+    const count = snapshot.exists() ? Object.keys(snapshot.val()).length + 1 : 1;
+    return `SSC-${String(count).padStart(2, '0')}`; // Formats as SSC-01, SSC-02, etc.
+};
+    // Function to handle registration
+    const submitRegistrationForm = async (name, phone) => {
+        const uid = await generateUID();
+        const newParticipantRef = ref(database, `participants/${uid}`);
 
-      if (participants) {
-        let serialNumber = 1; // Start serial number from 1
-        Object.keys(participants).forEach((id) => {
-          const participant = participants[id];
-          participantsList.innerHTML += `
-            <li class="list-group-item">
-              <strong>${serialNumber}. ${participant.name}</strong>
-              <span class="badge badge-${participant.status === "PAID" ? "success" : "warning"}">${participant.status}</span>
-            </li>
-          `;
-          serialNumber++; // Increment serial number for each participant
+        set(newParticipantRef, {
+            uid: uid,
+            name: name,
+            phone: phone,
+            status: "UNPAID"
+        }).then(() => {
+            document.getElementById("registrationForm").reset();
+            alert("Participant Registered Successfully!");
+            
+            // Play success audio
+            const successAudio = document.getElementById("successAudio");
+            if (successAudio) {
+                successAudio.play().catch(error => console.log("Audio Play Error:", error));
+            }
+
+            fetchParticipants();
+        }).catch((error) => {
+            alert("Error in Registration: " + error.message);
         });
-      } else {
-        participantsList.innerHTML = "<li class='list-group-item'>No participants registered yet</li>";
-      }
+    };
+
+    // Function to fetch and display participants
+    const fetchParticipants = () => {
+        const participantsRef = ref(database, 'participants');
+        onValue(participantsRef, (snapshot) => {
+            const participantsList = document.getElementById("participants");
+            participantsList.innerHTML = "";  
+            const participants = snapshot.val();
+
+            if (participants) {
+                Object.keys(participants).sort().forEach((id, index) => {
+                    const participant = participants[id];
+                    participantsList.innerHTML += `
+                        <li class="list-group-item">
+                            <strong>${index + 1}. ${participant.name}</strong>
+                            <small>(${participant.uid})</small>
+                            <span class="badge badge-${participant.status === "PAID" ? "success" : "warning"}">${participant.status}</span>
+                        </li>
+                    `;
+                });
+            } else {
+                participantsList.innerHTML = "<li class='list-group-item'>No participants registered yet</li>";
+            }
+        });
+    };
+
+    window.onload = fetchParticipants;
+
+    // Form submission handling
+    document.getElementById("registrationForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        submitRegistrationForm(name, phone);
     });
-  };
-
-  // Call the fetchParticipants function on page load to display participants
-  window.onload = () => {
-    fetchParticipants();
-  };
-
-  // Handling the form submission
-  document.getElementById("registrationForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-
-    submitRegistrationForm(name, phone);
-  });
 </script>
     <!-- Custom JS -->
 </body>
