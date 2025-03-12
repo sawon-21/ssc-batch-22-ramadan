@@ -50,23 +50,44 @@
     <!-- Admin Section -->
     <section class="container mt-3">
         <h2 class="text-center">Manage Participants</h2>
-<!-- Dashboard Section -->
 <div id="dashboard" class="row text-center mb-4">
-    <div class="col-md-6">
+    <div class="col-md-12 mb-3">
+        <div class="card shadow-lg p-3 text-white bg-dark">
+            <h5 class="font-weight-bold">Expected Amount</h5>
+            <h2 id="totalAmount" class="font-weight-bold">0 TK</h2>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
         <div class="card shadow-lg p-3 text-white bg-primary">
             <h5 class="font-weight-bold">Total Participants</h5>
             <h2 id="totalParticipants" class="font-weight-bold">0</h2>
         </div>
     </div>
-    <div class="col-md-6">
+    
+    <div class="col-md-3">
         <div class="card shadow-lg p-3 text-white bg-success">
             <h5 class="font-weight-bold">Total Income</h5>
             <h2 id="totalIncome" class="font-weight-bold">0 TK</h2>
         </div>
     </div>
+    
+    <div class="col-md-3">
+        <div class="card shadow-lg p-3 text-white bg-danger">
+            <h5 class="font-weight-bold">Unpaid Participants</h5>
+            <h2 id="unpaidParticipants" class="font-weight-bold">0</h2>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card shadow-lg p-3 text-red bg-warning">
+            <h5 class="font-weight-bold">Due</h5>
+            <h2 id="totalDue" class="font-weight-bold">0 TK</h2>
+        </div>
+    </div>
 </div>
         
-        <button class="btn btn-warning mb-3" id="downloadPdfBtn">Download PDF</button>
+        <button class="btn btn-info mb-4" id="downloadPdfBtn">Download PDF</button>
         
         <!-- Responsive Table -->
         <div class="table-responsive">
@@ -151,10 +172,15 @@ const fetchParticipants = () => {
         const participantsList = document.getElementById("participantsList");
         const totalParticipantsEl = document.getElementById("totalParticipants");
         const totalIncomeEl = document.getElementById("totalIncome");
+        const totalDueEl = document.getElementById("totalDue");
+        const unpaidParticipantsEl = document.getElementById("unpaidParticipants");
+        const totalAmountEl = document.getElementById("totalAmount");
 
         participantsList.innerHTML = "";
         let totalParticipants = 0;
         let totalIncome = 0;
+        let totalDue = 0;
+        let unpaidParticipants = 0;
         const participants = snapshot.val();
 
         if (participants) {
@@ -165,9 +191,12 @@ const fetchParticipants = () => {
                 // Count total participants
                 totalParticipants++;
 
-                // Calculate total income for PAID users
+                // Calculate total income & due
                 if (participant.status === "PAID") {
                     totalIncome += 100;
+                } else {
+                    totalDue += 100;
+                    unpaidParticipants++;
                 }
 
                 participantsList.innerHTML += `
@@ -188,9 +217,15 @@ const fetchParticipants = () => {
             participantsList.innerHTML = `<tr><td colspan="6" class="text-center">No participants found.</td></tr>`;
         }
 
+        // Calculate total amount (Total Participants × 100 TK)
+        let totalAmount = totalParticipants * 100;
+
         // Update Dashboard Values
         totalParticipantsEl.textContent = totalParticipants;
         totalIncomeEl.textContent = totalIncome + " TK";
+        totalDueEl.textContent = totalDue + " TK";
+        unpaidParticipantsEl.textContent = unpaidParticipants;
+        totalAmountEl.textContent = totalAmount + " TK";
     });
 };
 //<button class="btn btn-danger btn-sm" onclick="deleteParticipant('${id}')">Delete</button>
