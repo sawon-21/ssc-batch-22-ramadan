@@ -132,11 +132,10 @@
                     <label for="phone"><b>মোবাইল নম্বর: * </b></label>
                     <input type="number" placeholder="মোবাইল নাম্বার" class="form-control" id="phone" required>
                 </div>
-                <button type="submit" class="btn btn-primary">রেজিস্ট্রেশন করুন</button>
-                <a href="payments.html"class="btn btn-success">Payment করুন </a>
+
             </form>
             <div id="participantsList" class="mt-4">
-                <h3>রেজিস্ট্রেশনকৃত অংশগ্রহণকারী</h3>
+                <h3>এখনো রেজিস্ট্রেশন শুরু হয়নি। </h3>
                 <ul id="participants"></ul>
             </div>
         </div>
@@ -300,15 +299,7 @@ changeSlide();
     import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 
     const firebaseConfig = {
-        apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
-        authDomain: "ssc22-4f7ae.firebaseapp.com",
-        databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
-        projectId: "ssc22-4f7ae",
-        storageBucket: "ssc22-4f7ae.firebasestorage.app",
-        messagingSenderId: "355526890032",
-        appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
-        measurementId: "G-GMHS7794LY"
-    };
+
 
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
