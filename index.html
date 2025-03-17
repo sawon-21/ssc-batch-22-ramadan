@@ -45,7 +45,7 @@
         <div class="container">
             <h1>ইফতার মাহফিল  <i>SSC Batch 2022</i></h1>
             <p>২৬শে রমজান, ২৭শে মার্চ ২০২৫</p>
-            <p>রোজ: বুধবার </p><br>
+            <p>রোজ: বৃহস্পতিবার </p><br>
           <p> <button class="btn btn-primary"><a href="#register" style="color:#fff">রেজিস্ট্রেশন করুন ⇨</a></button></p>
             <div id="countdown"></div>
         </div>
@@ -56,7 +56,7 @@
         <div class="container">
             <h2> বিস্তারিত তথ্য</h2>
             <p><strong>তারিখ:</strong> ২৬শে রমজান, ২৭শে মার্চ ২০২৫</p>
-            <p><strong>রোজ:</strong> বুধবার  </p>
+            <p><strong>রোজ:</strong> বৃহস্পতিবার  </p>
             <p><strong>স্থান:</strong>রত্নাই বগুলাবাড়ী স্কুল এন্ড কলেজ মাঠ,স্কুলহাট</p>
             <p><strong>সময়:</strong> বিকাল ৪:০০ টা</p>
            <p><strong>ফি:</strong> মাত্র - ১০০/= টাকা</p>
@@ -132,10 +132,11 @@
                     <label for="phone"><b>মোবাইল নম্বর: * </b></label>
                     <input type="number" placeholder="মোবাইল নাম্বার" class="form-control" id="phone" required>
                 </div>
-
+                <button type="submit" class="btn btn-primary">রেজিস্ট্রেশন করুন</button>
+                <a href="payments.html"class="btn btn-success">Payment করুন </a>
             </form>
             <div id="participantsList" class="mt-4">
-                <h3>এখনো রেজিস্ট্রেশন শুরু হয়নি। </h3>
+                <h3>রেজিস্ট্রেশনকৃত অংশগ্রহণকারী</h3>
                 <ul id="participants"></ul>
             </div>
         </div>
@@ -299,7 +300,15 @@ changeSlide();
     import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 
     const firebaseConfig = {
-
+        apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
+        authDomain: "ssc22-4f7ae.firebaseapp.com",
+        databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
+        projectId: "ssc22-4f7ae",
+        storageBucket: "ssc22-4f7ae.firebasestorage.app",
+        messagingSenderId: "355526890032",
+        appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
+        measurementId: "G-GMHS7794LY"
+    };
 
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
