@@ -4,383 +4,1938 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ইফতার মাহফিল - SSC Batch 2022</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins (English) and SolaimanLipi (Bangla) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- SplideJS (Modern Slider) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --primary-dark: #3a56c7;
+            --secondary-color: #f8f9fc;
+            --accent-color: #f6c23e;
+            --dark-color: #2a2c3a;
+            --light-color: #ffffff;
+            --success-color: #1cc88a;
+            --danger-color: #e74a3b;
+            --gold-gradient: linear-gradient(135deg, #f5d020 0%, #f53803 100%);
+            --primary-gradient: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            --glass-effect: rgba(255, 255, 255, 0.15);
+        }
+        
+        body {
+            font-family: 'Poppins', 'SolaimanLipi', sans-serif;
+            background-color: var(--secondary-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        .bangla {
+            font-family: 'SolaimanLipi', sans-serif;
+        }
+        
+        /* Luxury Glassmorphism Effect */
+        .glass-card {
+            background: var(--glass-effect);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        /* Luxury Gold Text */
+        .gold-text {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 8px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover img {
+            transform: rotate(15deg);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 80%;
+        }
+        
+        /* Hero Section */
+        .home-section {
+            background: linear-gradient(135deg, rgba(78, 115, 223, 0.9), rgba(28, 68, 178, 0.9)), 
+                        url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 200px 0 150px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .home-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 0;
+        }
+        
+        .home-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .home-section h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+        
+        .home-section p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .home-section .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .home-section .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+        }
+        
+        .home-section .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .home-section .btn-outline-light {
+            border: 2px solid white;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-section .btn-outline-light::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .home-section .btn-outline-light:hover::before {
+            left: 100%;
+        }
+        
+        /* Luxury Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Countdown Timer */
+        .countdown {
+            margin: 50px auto;
+            max-width: 900px;
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        
+        .circle {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .circle:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .circle span {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #f6c23e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .circle small {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+            margin-top: 5px;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-weight: 800;
+            color: var(--dark-color);
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            bottom: -15px;
+            left: 0;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Event Details */
+        .event-section .details-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-section .details-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 115, 223, 0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        
+        .event-section .details-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+        }
+        
+        .event-section .detail-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .event-section .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+        }
+        
+        .event-section .detail-content h5 {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .event-section .detail-content p {
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+        
+        /* Registration Form */
+        .register-section {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .register-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 115, 223, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .register-section .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .register-section .form-control {
+            height: 55px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .register-section .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+        }
+        
+        .register-section .form-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+        
+        .register-section .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .register-section .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+        }
+        
+        .register-section .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .register-section .btn-success {
+            background: linear-gradient(135deg, #1cc88a 0%, #17a673 100%);
+            border: none;
+        }
+        
+        .register-section .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Participants List */
+        .participants-list {
+            margin-top: 50px;
+        }
+        
+        .participants-list .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .participants-list .search-box {
+            position: relative;
+            max-width: 300px;
+        }
+        
+        .participants-list .search-box input {
+            padding-left: 40px;
+            border-radius: 50px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .participants-list .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        .participants-list .list-group-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 25px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            background: white;
+        }
+        
+        .participants-list .list-group-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .participants-list .participant-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .participants-list .participant-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .participants-list .participant-name {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .participants-list .participant-id {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .participants-list .badge {
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            background: linear-gradient(135deg, #e9ecef 0%, #f8f9fc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 115, 223, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .splide {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .splide__slide {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .splide__slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .splide__slide:hover img {
+            transform: scale(1.05);
+        }
+        
+        .splide__slide::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        }
+        
+        .splide__caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            color: white;
+            z-index: 2;
+        }
+        
+        .splide__caption h5 {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .splide__caption p {
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+        
+        .splide__arrows {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        
+        .splide__arrow {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            opacity: 1;
+            transform: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .splide__arrow:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .splide__arrow svg {
+            fill: var(--primary-color);
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 115, 223, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info h4 {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-info h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .contact-content h5 {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .contact-content a {
+            color: #6c757d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-content a:hover {
+            color: var(--primary-color);
+        }
+        
+        .contact-buttons .btn {
+            margin: 0 10px 15px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-buttons .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+        }
+        
+        .contact-buttons .btn-success {
+            background: linear-gradient(135deg, #1cc88a 0%, #17a673 100%);
+            border: none;
+        }
+        
+        .contact-buttons .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-gradient);
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .footer-logo {
+            font-weight: 700;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Floating Action Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floating-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .floating-btn:hover::after {
+            opacity: 1;
+        }
+        
+        .floating-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .floating-btn.call {
+            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+        }
+        
+        .floating-btn.messenger {
+            background: linear-gradient(135deg, #0084ff 0%, #0069d9 100%);
+        }
+        
+        .floating-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Confetti Effect */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            opacity: 0;
+            animation: confetti-fall 5s linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* QR Code Modal */
+        .qr-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .qr-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .qr-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .qr-modal.active .qr-content {
+            transform: scale(1);
+        }
+        
+        .qr-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+        
+        .close-qr {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.3s ease;
+        }
+        
+        .close-qr:hover {
+            color: var(--danger-color);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .home-section h1 {
+                font-size: 3.5rem;
+            }
+            
+            .circle {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .circle span {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .home-section {
+                padding: 180px 0 120px;
+            }
+            
+            .home-section h1 {
+                font-size: 3rem;
+            }
+            
+            section {
+                padding: 100px 0;
+            }
+            
+            .circle {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .circle span {
+                font-size: 2rem;
+            }
+            
+            .splide__slide img {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .home-section {
+                padding: 150px 0 80px;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .home-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .home-section p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .circle {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .circle span {
+                font-size: 1.8rem;
+            }
+            
+            .circle small {
+                font-size: 0.8rem;
+            }
+            
+            .splide__slide img {
+                height: 350px;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .home-section h1 {
+                font-size: 2rem;
+            }
+            
+            .timer {
+                gap: 15px;
+            }
+            
+            .circle {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .circle span {
+                font-size: 1.5rem;
+            }
+            
+            .circle small {
+                font-size: 0.7rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .event-section .details-card,
+            .register-section .form-container,
+            .contact-info {
+                padding: 25px;
+            }
+            
+            .splide__slide img {
+                height: 300px;
+            }
+            
+            .floating-buttons {
+                bottom: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+            
+            .floating-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+            
+            .back-to-top {
+                bottom: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">ইফতার মাহফিল</a>
- <img src="https://i.postimg.cc/KcwGQrS9/20250311-113157.png" width="10%" class="navbar-brand">
+            <a class="navbar-brand" href="#">
+                <img src="https://i.postimg.cc/KcwGQrS9/20250311-113157.png" width="40" height="40" class="d-inline-block align-top me-2" alt="Logo">
+                <span class="bangla">ইফতার মাহফিল</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#home">হোম</a>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home"><span class="bangla">হোম</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#event">ইভেন্ট</a>
+                        <a class="nav-link" href="#event"><span class="bangla">ইভেন্ট</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#register">রেজিস্ট্রেশন</a>
+                        <a class="nav-link" href="#register"><span class="bangla">রেজিস্ট্রেশন</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#gallery">গ্যালারি</a>
+                        <a class="nav-link" href="#gallery"><span class="bangla">গ্যালারি</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">যোগাযোগ</a>
+                        <a class="nav-link" href="#contact"><span class="bangla">যোগাযোগ</span></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Home Section -->
+
+    <!-- Hero Section -->
     <section id="home" class="home-section">
+        <!-- Floating Particles Background -->
+        <div class="particles" id="particles"></div>
+        
         <div class="container">
-            <h1>ইফতার মাহফিল  <i>SSC Batch 2022</i></h1>
-            <p>২৮শে রমজান, ২৯শে মার্চ ২০২৫</p>
-            <p>রোজ: শনিবার   </p><br>
-          <p> <button class="btn btn-primary"><a href="#register" style="color:#fff">রেজিস্ট্রেশন করুন ⇨</a></button></p>
-            <div id="countdown"></div>
+            <h1 class="animate__animated animate__fadeInDown bangla">ইফতার মাহফিল <span class="gold-text">SSC Batch 2022</span></h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s"><i class="fas fa-calendar-alt me-2"></i><span class="bangla">২৮শে রমজান, ২৯শে মার্চ ২০২৫</span></p>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s"><i class="fas fa-clock me-2"></i><span class="bangla">রোজ: শনিবার</span></p>
+            <div class="animate__animated animate__fadeInUp animate__delay-2s mt-4">
+                <a href="#register" class="btn btn-primary btn-lg px-4 py-3 me-3 bangla">রেজিস্ট্রেশন করুন <i class="fas fa-arrow-right ms-2"></i></a>
+                <a href="#event" class="btn btn-outline-light btn-lg px-4 py-3 bangla">বিস্তারিত জানুন</a>
+            </div>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown animate__animated animate__fadeIn animate__delay-3s">
+                <div class="timer" id="timer">
+                    <div class="circle">
+                        <span id="days">০০</span>
+                        <small class="bangla">দিন</small>
+                    </div>
+                    <div class="circle">
+                        <span id="hours">০০</span>
+                        <small class="bangla">ঘন্টা</small>
+                    </div>
+                    <div class="circle">
+                        <span id="minutes">০০</span>
+                        <small class="bangla">মিনিট</small>
+                    </div>
+                    <div class="circle">
+                        <span id="seconds">০০</span>
+                        <small class="bangla">সেকেন্ড</small>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Event Details Section -->
     <section id="event" class="event-section">
         <div class="container">
-            <h2> বিস্তারিত তথ্য</h2>
-            <p><strong>তারিখ:</strong> ২৮শে রমজান, ২৯শে মার্চ ২০২৫</p>
-            <p><strong>রোজ:</strong> শনিবার    </p>
-            <p><strong>স্থান:</strong> সমীরউদ্দীন স্মৃতি মহাবিদ্যালয়  </p>
-            <p><strong>সময়:</strong> বিকাল ৪:০০ টা</p>
-           <p><strong>ফি:</strong> মাত্র - ২০০/= টাকা</p>
+            <h2 class="section-title text-center bangla" data-aos="fade-up">ইভেন্ট বিস্তারিত</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="details-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h5 class="bangla">তারিখ</h5>
+                                <p class="bangla">২৮শে রমজান, ২৯শে মার্চ ২০২৫</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h5 class="bangla">সময়</h5>
+                                <p class="bangla">বিকাল ৪:০০ টা</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h5 class="bangla">স্থান</h5>
+                                <p class="bangla">সমীরউদ্দীন স্মৃতি মহাবিদ্যালয়</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h5 class="bangla">ফি</h5>
+                                <p class="bangla">মাত্র - ২০০/= টাকা</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h5 class="bangla">অতিরিক্ত তথ্য</h5>
+                                <p class="bangla">সকল বন্ধুদের আসার জন্য অনুরোধ করা হলো</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-            <div class="countdown">
-        <div class="timer" id="timer">
-            <div class="circle">
-                <span id="days">০০</span>
-                <small>দিন</small>
-            </div>
-            <div class="circle">
-                <span id="hours">০০</span>
-                <small>ঘন্টা</small>
-            </div>
-            <div class="circle">
-                <span id="minutes">০০</span>
-                <small>মিনিট</small>
-            </div>
-            <div class="circle">
-                <span id="seconds">০০</span>
-                <small>সেকেন্ড</small>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script>
-        // Set the date we're counting down to
-        const countDownDate = new Date("March 29, 2025 16:00:00").getTime();
-
-        // Update the countdown every 1 second
-        const x = setInterval(function() {
-            // Get today's date and time
-            const now = new Date().getTime();
-
-            // Find the distance between now and the countdown date
-            const distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result in the circles
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
-
-            // If the countdown is over, display a message
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("timer").innerHTML = "<div class='circle'><span>আজ ইফতার মাহফিল </span></div>";
-            }
-        }, 1000);
-    </script>
     </section>
-<audio id="successAudio" src="success-audio.mp3" type="audio/mpeg"></audio>
+
     <!-- Registration Section -->
     <section id="register" class="register-section">
         <div class="container">
-            <h2>রেজিস্ট্রেশন</h2>
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="name"><b>নাম: </b>*</label>
-                    <input type="text" pl
-                 placeholder=" আপনার সম্পূর্ণ নাম ইংরেজিতে "class="form-control" id="name" required>
+            <h2 class="section-title text-center bangla" data-aos="fade-up">রেজিস্ট্রেশন</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-container" data-aos="fade-up" data-aos-delay="200">
+                        <form id="registrationForm">
+                            <div class="mb-4">
+                                <label for="name" class="form-label bangla">নাম *</label>
+                                <input type="text" class="form-control" id="name" placeholder="আপনার সম্পূর্ণ নাম ইংরেজিতে" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="form-label bangla">মোবাইল নম্বর *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="মোবাইল নাম্বার" required>
+                            </div>
+                            <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-4">
+                                <button type="submit" class="btn btn-primary px-4 py-3 me-md-3 bangla">
+                                    <i class="fas fa-user-plus me-2"></i>রেজিস্ট্রেশন করুন
+                                </button>
+<a href="Py.html"class="btn btn-success"id="showQRBtn">Payment করুন </a>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="participants-list" data-aos="fade-up" data-aos-delay="400">
+                        <div class="list-header">
+                            <h3 class="bangla">রেজিস্ট্রেশনকৃত অংশগ্রহণকারী</h3>
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="searchParticipants" class="form-control" placeholder="সার্চ করুন...">
+                            </div>
+                        </div>
+                        <div class="list-group" id="participants">
+                            <!-- Participants will be loaded here -->
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="phone"><b>মোবাইল নম্বর: * </b></label>
-                    <input type="number" placeholder="মোবাইল নাম্বার" class="form-control" id="phone" required>
-                </div>
-                <button type="submit" class="btn btn-primary">রেজিস্ট্রেশন করুন</button>
-                <a href="Py.html"class="btn btn-success">Payment করুন </a>
-            </form>
-            <div id="participantsList" class="mt-4">
-                <h3>রেজিস্ট্রেশনকৃত অংশগ্রহণকারী</h3>
-                <ul id="participants"></ul>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery-section">
-    <div class="container">
-   <!---     <h2 class="text-center mt-4">৯ই এপ্রিল ২০২৪ </h2>
-        <div class="video-container">
-            Auto Play Video 
-            <video id="videoPlayer" autoplay muted loop>
-                <source src="ssc.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-             Play Button 
-            <button class="play-button" id="playButton">Play with Sound</button>
+        <div class="container">
+            <h2 class="section-title text-center bangla" data-aos="fade-up">স্মৃতিচারণ</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="splide" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <img src="https://i.postimg.cc/8Cwfc66d/IMG-20250326-WA0001.jpg" alt="Event Photo 1">
+                                    <div class="splide__caption">
+                                        <h5 class="bangla">বন্ধুদের সাথে আনন্দময় মুহূর্ত</h5>
+                                        <p class="bangla">আগের সমাবেশ থেকে স্মৃতি</p>
+                                    </div>
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://i.postimg.cc/sgrJZ5vb/IMG-20250326-WA0002.jpg" alt="Event Photo 2">
+                                    <div class="splide__caption">
+                                        <h5 class="bangla">সাম্প্রতিক সমাবেশ</h5>
+                                        <p class="bangla">বন্ধুদের সাথে একত্রিত হওয়া</p>
+                                    </div>
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://i.postimg.cc/L4GD2cR9/IMG-20250326-WA0003.jpg" alt="Event Photo 3">
+                                    <div class="splide__caption">
+                                        <h5 class="bangla">মজার মুহূর্ত</h5>
+                                        <p class="bangla">সবাই একসাথে</p>
+                                    </div>
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://i.postimg.cc/W4p65jmn/IMG-20250326-WA0004.jpg" alt="Event Photo 4">
+                                    <div class="splide__caption">
+                                        <h5 class="bangla">আনন্দঘন স্মৃতি</h5>
+                                        <p class="bangla">অতীতের সেরা মুহূর্ত</p>
+                                    </div>
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://i.postimg.cc/G2JLqDsD/20240407-181908-2.jpg" alt="Event Photo 5">
+                                    <div class="splide__caption">
+                                        <h5 class="bangla">বন্ধুত্বের বন্ধন</h5>
+                                        <p class="bangla">সবাই একসাথে</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        // JavaScript to handle play button click
-        const videoPlayer = document.getElementById("videoPlayer");
-        const playButton = document.getElementById("playButton");
-
-        playButton.addEventListener("click", () => {
-            videoPlayer.muted = false; // Unmute the video
-            videoPlayer.play(); // Play the video
-            playButton.style.display = "none"; // Hide the play button
-        });
-
-        // Optional: Hide the play button if the video is already playing with sound
-        videoPlayer.addEventListener("play", () => {
-            if (!videoPlayer.muted) {
-                playButton.style.display = "none";
-            }
-        });
-    </script>
-  <span id="heading"><h2>স্মৃতিচারণ</h2> </span>
-<div id="slider">  
-<div class="slides">  
-  <img src="https://i.postimg.cc/8Cwfc66d/IMG-20250326-WA0001.jpg" width="100%" />
- </div>
-  
-  <div class="slides">  
-  <img src="https://i.postimg.cc/sgrJZ5vb/IMG-20250326-WA0002.jpg" width="100%" />
-</div>
-  
-  <div class="slides">  
-  <img src="https://i.postimg.cc/L4GD2cR9/IMG-20250326-WA0003.jpg" width="100%" />
-</div> 
-  
-   <div class="slides">  
-  <img src="
-  https://i.postimg.cc/W4p65jmn/IMG-20250326-WA0004.jpg" width="100%" />
-</div> 
-  
-<div class="slides">  
-  <img src="https://i.postimg.cc/G2JLqDsD/20240407-181908-2.jpg" width="100%" />
-</div>  
-  
-  <div id="dot"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-  <script>
-    var index = 0;
-var slides = document.querySelectorAll(".slides");
-var dot = document.querySelectorAll(".dot");
-
-function changeSlide(){
-
-  if(index<0){
-    index = slides.length-1;
-  }
-  
-  if(index>slides.length-1){
-    index = 0;
-  }
-  
-  for(let i=0;i<slides.length;i++){
-    slides[i].style.display = "none";
-    dot[i].classList.remove("active");
-  }
-  
-  slides[index].style.display= "block";
-  dot[index].classList.add("active");
-  
-  index++;
-  
-  setTimeout(changeSlide,4000);
-  
-}
-
-changeSlide();
-  </script>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <h2>যোগাযোগ</h2>
-            <h5>আমাদের সাথে যোগাযোগ করুন:</h5>
-            <ul>
-                <li> <mark><b>ফোন: <a href="tel:+88+8801764196769">+8801764196769</a></b></mark></li>
-                <li> <mark><b>Messenger গ্রুপে যুক্ত হন।</b></mark></li>
-                <li><a  class="btn btn-primary" href="https://m.me/j/AbbXSn_Sp-Y4bykr/">☞ Join now</a></li>
-                <!-- Floating Messenger Icon -->
-<div class="floating-messenger">
-  <a href="tel:+88+8801764196769">
-    <i class="bi bi-telephone-fill"></i>
-</a> <br> <br>
-    <a href="https://m.me/j/AbbXSn_Sp-Y4bykr/" target="_blank" class="btn btn-primary">
-        <i class="fab fa-facebook-messenger"></i>
-    </a>
-</div>
+            <h2 class="section-title text-center bangla" data-aos="fade-up">যোগাযোগ</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-info" data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="bangla">আমাদের সাথে যোগাযোগ করুন</h4>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h5 class="bangla">ফোন</h5>
+                                <a href="tel:+8801764196769">+8801764196769</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-facebook-messenger"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h5 class="bangla">মেসেঞ্জার গ্রুপ</h5>
+                                <a href="https://m.me/j/AbbXSn_Sp-Y4bykr/" target="_blank" class="bangla">এখানে ক্লিক করুন</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
 
-<!-- Custom CSS for floating icon -->
-<style>
-    .floating-messenger {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 9999;
-    }
-
-    .floating-messenger a {
-        font-size: 20px;
-        background-color: #0084ff; /* Facebook Messenger blue */
-        color: white;
-        border-radius: 50%;
-        padding: 9px;
-        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
-    }
-
-    .floating-messenger a:hover {
-        background-color: #006bb3;
-    }
-</style>
-            </ul>
+                        </div>
+                        <div class="contact-buttons text-center mt-5">
+                            <a href="https://m.me/j/AbbXSn_Sp-Y4bykr/" target="_blank" class="btn btn-primary me-2 bangla">
+                                <i class="fab fa-facebook-messenger me-2"></i>মেসেঞ্জারে যোগ দিন
+                            </a>
+                            <a href="https://wa.me/8801764196769" target="_blank" class="btn btn-success bangla">
+                                <i class="fab fa-whatsapp me-2"></i>হোয়াটসঅ্যাপ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; <a href="https://www.instagram.com/mehedi_al_hasan_sawon_21?igsh=MXQ4cW1vYzE5aDgy" style="color:yellow">Mehedi Al Hasan Sawon </a></p>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">
+                        <img src="https://i.postimg.cc/KcwGQrS9/20250311-113157.png" width="40" height="40" class="me-2" alt="Logo">
+                        <span class="bangla">ইফতার মাহফিল</span>
+                    </div>
+                    <p class="bangla">SSC Batch 2022 এর সকল বন্ধুদের জন্য আয়োজিত বিশেষ ইফতার মাহফিল।</p>
+
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-white mb-4 bangla">লিংক</h5>
+                    <ul class="footer-links">
+                        <li><a href="#home" class="bangla">হোম</a></li>
+                        <li><a href="#event" class="bangla">ইভেন্ট</a></li>
+                        <li><a href="#register" class="bangla">রেজিস্ট্রেশন</a></li>
+                        <li><a href="#gallery" class="bangla">গ্যালারি</a></li>
+                        <li><a href="#contact" class="bangla">যোগাযোগ</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 mb-4">
+                    <h5 class="text-white mb-4 bangla">যোগাযোগ</h5>
+                    <ul class="footer-links">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> <span class="bangla">সমীরউদ্দীন স্মৃতি মহাবিদ্যালয়</span></li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +8801764196769</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@example.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright text-center bangla">
+                &copy; ২০২৫ ইফতার মাহফিল - SSC Batch 2022 | ডেভেলপ করেছেন: <a href="https://www.instagram.com/mehedi_al_hasan_sawon_21?igsh=MXQ4cW1vYzE5aDgy" target="_blank">Mehedi Al Hasan Sawon</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:+8801764196769" class="floating-btn call">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="https://m.me/j/AbbXSn_Sp-Y4bykr/" target="_blank" class="floating-btn messenger">
+            <i class="fab fa-facebook-messenger"></i>
+        </a>
+        <a href="https://wa.me/8801764196769" target="_blank" class="floating-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- QR Code Modal -->
+    <div class="qr-modal" id="qrModal">
+        <div class="qr-content">
+            <span class="close-qr" id="closeQR">&times;</span>
+            <h4 class="bangla">পেমেন্ট করুন</h4>
+            <p class="bangla mb-3">নিচের QR কোড স্ক্যান করে অথবা নিচের নাম্বারে বিকাশ করুন</p>
+            
+            <img src="https://i.postimg.cc/9FzZ4P1n/qr-code.png" alt="Payment QR Code">
+            
+            <div class="mt-3">
+                <h5 class="bangla">বিকাশ নম্বর</h5>
+                <p class="fs-4">+8801764196769</p>
+            </div>
+            
+            <p class="bangla mt-3"><strong>দ্রষ্টব্য:</strong> পেমেন্টের পর আপনার রেজিস্ট্রেশন আইডি মেসেজ করুন</p>
+            
+            <button class="btn btn-primary mt-3 bangla" id="copyNumber">
+                <i class="fas fa-copy me-2"></i>নম্বর কপি করুন
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="successAudio" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
+    <audio id="clickAudio" src="https://www.soundjay.com/buttons/sounds/button-10.mp3" preload="auto"></audio>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-    import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+    
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- SplideJS (Modern Slider) -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
-        authDomain: "ssc22-4f7ae.firebaseapp.com",
-        databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
-        projectId: "ssc22-4f7ae",
-        storageBucket: "ssc22-4f7ae.firebasestorage.app",
-        messagingSenderId: "355526890032",
-        appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
-        measurementId: "G-GMHS7794LY"
-    };
+        // Initialize Splide (Modern Slider)
+        document.addEventListener('DOMContentLoaded', function() {
+            new Splide('.splide', {
+                type: 'loop',
+                perPage: 1,
+                autoplay: true,
+                interval: 5000,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                arrows: true,
+                pagination: false,
+                speed: 1000,
+                rewind: true,
+                cover: true,
+                heightRatio: 0.6,
+                breakpoints: {
+                    992: {
+                        heightRatio: 0.5
+                    },
+                    768: {
+                        heightRatio: 0.4
+                    }
+                }
+            }).mount();
+        });
 
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA3eq7s6UvWPxlT05fXXesVpeSh1KnURyA",
+            authDomain: "ssc22-4f7ae.firebaseapp.com",
+            databaseURL: "https://ssc22-4f7ae-default-rtdb.firebaseio.com",
+            projectId: "ssc22-4f7ae",
+            storageBucket: "ssc22-4f7ae.appspot.com",
+            messagingSenderId: "355526890032",
+            appId: "1:355526890032:web:6a19c027f419f54d75d3f5",
+            measurementId: "G-GMHS7794LY"
+        };
 
-const generateUID = async () => {
-    const participantsRef = ref(database, 'participants');
-    const snapshot = await get(participantsRef);
-    const count = snapshot.exists() ? Object.keys(snapshot.val()).length + 1 : 1;
-    return `SSC-${String(count).padStart(2, '0')}`; // Formats as SSC-01, SSC-02, etc.
-};
-    // Function to handle registration
-    const submitRegistrationForm = async (name, phone) => {
-        const uid = await generateUID();
-        const newParticipantRef = ref(database, `participants/${uid}`);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-        set(newParticipantRef, {
-            uid: uid,
-            name: name,
-            phone: phone,
-            status: "UNPAID"
-        }).then(() => {
-            document.getElementById("registrationForm").reset();
-            alert("Participant Registered Successfully!");
+        // Generate Unique ID for Participants
+        const generateUID = async () => {
+            const snapshot = await database.ref('participants').once('value');
+            const count = snapshot.exists() ? Object.keys(snapshot.val()).length + 1 : 1;
+            return `SSC-${String(count).padStart(3, '0')}`;
+        };
+
+        // Handle Registration Form Submission
+        document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            // Play success audio
-            const successAudio = document.getElementById("successAudio");
-            if (successAudio) {
-                successAudio.play().catch(error => console.log("Audio Play Error:", error));
-            }
-
-            fetchParticipants();
-        }).catch((error) => {
-            alert("Error in Registration: " + error.message);
-        });
-    };
-
-    // Function to fetch and display participants
-    const fetchParticipants = () => {
-        const participantsRef = ref(database, 'participants');
-        onValue(participantsRef, (snapshot) => {
-            const participantsList = document.getElementById("participants");
-            participantsList.innerHTML = "";  
-            const participants = snapshot.val();
-
-            if (participants) {
-                Object.keys(participants).sort().forEach((id, index) => {
-                    const participant = participants[id];
-                    participantsList.innerHTML += `
-                        <li class="list-group-item">
-                            <strong>${index + 1}. ${participant.name}</strong>
-                            <small>(${participant.uid})</small>
-                            <span class="badge badge-${participant.status === "PAID" ? "success" : "warning"}">${participant.status}</span>
-                        </li>
-                    `;
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            
+            if (!name || !phone) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'অনুগ্রহ করে সব তথ্য প্রদান করুন',
+                    text: 'আপনার নাম এবং মোবাইল নম্বর অবশ্যই দিতে হবে',
+                    confirmButtonText: 'ঠিক আছে'
                 });
-            } else {
-                participantsList.innerHTML = "<li class='list-group-item'>No participants registered yet</li>";
+                return;
+            }
+            
+            try {
+                const uid = await generateUID();
+                await database.ref('participants/' + uid).set({
+                    uid: uid,
+                    name: name,
+                    phone: phone,
+                    status: "UNPAID",
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                });
+                
+                // Play success sound
+                document.getElementById('successAudio').play();
+                
+                // Show confetti effect
+                showConfetti();
+                
+                // Show success message with SweetAlert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'রেজিস্ট্রেশন সফল!',
+                    html: `আপনার রেজিস্ট্রেশন আইডি: <strong>${uid}</strong><br><br>
+                           পেমেন্ট করতে নিচের বাটনে ক্লিক করুন`,
+                    confirmButtonText: 'পেমেন্ট করুন',
+                    showCancelButton: true,
+                    cancelButtonText: 'পরে করব',
+                    focusConfirm: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('showQRBtn').click();
+                    }
+                });
+                
+                // Reset form
+                document.getElementById('registrationForm').reset();
+                
+                // Refresh participants list
+                fetchParticipants();
+            } catch (error) {
+                console.error('Error saving data:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'রেজিস্ট্রেশন ব্যর্থ হয়েছে',
+                    text: 'দুঃখিত, একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।',
+                    confirmButtonText: 'ঠিক আছে'
+                });
             }
         });
-    };
 
-    window.onload = fetchParticipants;
+        // Fetch and Display Participants
+        const fetchParticipants = () => {
+            const participantsRef = database.ref('participants');
+            participantsRef.orderByChild('timestamp').on('value', (snapshot) => {
+                const participantsList = document.getElementById('participants');
+                participantsList.innerHTML = '';
+                
+                if (snapshot.exists()) {
+                    const participants = snapshot.val();
+                    let count = 1;
+                    
+                    // Convert object to array and sort by timestamp
+                    const participantsArray = Object.values(participants).sort((a, b) => b.timestamp - a.timestamp);
+                    
+                    participantsArray.forEach(participant => {
+                        const listItem = document.createElement('div');
+                        listItem.className = 'list-group-item';
+                        listItem.innerHTML = `
+                            <div class="participant-info">
+                                <div class="participant-avatar">
+                                    ${participant.name.charAt(0).toUpperCase()}
+                                </div>
+                                <div>
+                                    <div class="participant-name">${participant.name}</div>
+                                    <div class="participant-id">${participant.uid}</div>
+                                </div>
+                            </div>
+                            <span class="badge ${participant.status === "PAID" ? "bg-success" : "bg-warning text-dark"}">
+                                ${participant.status}
+                            </span>
+                        `;
+                        participantsList.appendChild(listItem);
+                    });
+                } else {
+                    participantsList.innerHTML = `
+                        <div class="list-group-item text-center text-muted bangla">
+                            এখনো কেউ রেজিস্ট্রেশন করেনি
+                        </div>
+                    `;
+                }
+            });
+        };
 
-    // Form submission handling
-    document.getElementById("registrationForm").addEventListener("submit", (event) => {
-        event.preventDefault();
-        const name = document.getElementById("name").value;
-        const phone = document.getElementById("phone").value;
-        submitRegistrationForm(name, phone);
-    });
-</script>
-    <!-- Custom JS -->
+        // Search Participants
+        document.getElementById('searchParticipants').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const participants = document.querySelectorAll('.list-group-item');
+            
+            participants.forEach(participant => {
+                const text = participant.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    participant.style.display = 'flex';
+                } else {
+                    participant.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize Countdown Timer
+        const countDownDate = new Date("March 29, 2025 16:00:00").getTime();
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("timer").innerHTML = `
+                    <div class="circle">
+                        <span class="bangla">আজ ইফতার মাহফিল</span>
+                    </div>
+                `;
+            }
+        }, 1000);
+
+        // Create Floating Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.6 + 0.2;
+                
+                // Random animation
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Show Confetti Effect
+        function showConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.style.display = 'block';
+            
+            // Create confetti elements
+            const colors = ['#4e73df', '#f6c23e', '#1cc88a', '#e74a3b', '#36b9cc'];
+            const count = 100;
+            
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 3 + 2;
+                const animationDelay = Math.random() * 5;
+                
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.backgroundColor = color;
+                confetti.style.left = `${left}%`;
+                confetti.style.animationDuration = `${animationDuration}s`;
+                confetti.style.animationDelay = `${animationDelay}s`;
+                
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+            
+            // Hide container after all confetti is gone
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 7000);
+        }
+
+        // QR Code Modal
+        const qrModal = document.getElementById('qrModal');
+        const showQRBtn = document.getElementById('showQRBtn');
+        const closeQR = document.getElementById('closeQR');
+        const copyNumberBtn = document.getElementById('copyNumber');
+        
+        showQRBtn.addEventListener('click', () => {
+            document.getElementById('clickAudio').play();
+            qrModal.classList.add('active');
+        });
+        
+        closeQR.addEventListener('click', () => {
+            qrModal.classList.remove('active');
+        });
+        
+        copyNumberBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('+8801764196769');
+            document.getElementById('clickAudio').play();
+            
+            // Show tooltip
+            const originalText = copyNumberBtn.innerHTML;
+            copyNumberBtn.innerHTML = '<i class="fas fa-check me-2"></i>কপি করা হয়েছে';
+            
+            setTimeout(() => {
+                copyNumberBtn.innerHTML = originalText;
+            }, 2000);
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                qrModal.classList.remove('active');
+            }
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Back to top button visibility
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Activate current nav link based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create floating particles
+            createParticles();
+            
+            // Fetch participants on page load
+            fetchParticipants();
+            
+            // Add click sound to buttons
+            document.querySelectorAll('button, a[href="#"], .nav-link').forEach(element => {
+                element.addEventListener('click', () => {
+                    document.getElementById('clickAudio').play();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
