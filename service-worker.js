@@ -1,5 +1,5 @@
 // Cache name
-const CACHE_NAME = 'my-cache-v-0001';
+const CACHE_NAME = 'my-cache-v-0002';
 
 // Files to cache
 const urlsToCache = [
