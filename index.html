@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ramadan Notifications - SSC Batch 22</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramadan Notification Service</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
-
-  <div class="container text-center mt-5">
-    <h1>Ramadan Notifications</h1>
-    <p>Click the button below to start receiving reminders every 10 seconds.</p>
-    <button id="notifyBtn" class="btn btn-success">Enable Notifications</button>
-  </div>
+  <h1>Ramadan Notification Service</h1>
+  <p>Click the button below to enable notifications.</p>
+  <button id="enableNotifications">Enable Notifications</button>
 
   <script>
-    document.getElementById("notifyBtn").addEventListener("click", function () {
-      if (!("Notification" in window)) {
-        alert("This browser does not support desktop notifications.");
-        return;
-      }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function(registration) {
+          console.log('Service Worker registered with scope:', registration.scope);
+        }).catch(function(error) {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
 
-      Notification.requestPermission().then(function (permission) {
-        if (permission === "granted") {
-          alert("Notifications enabled! You'll get reminders every 10 seconds.");
-          startNotifications();
+    document.getElementById('enableNotifications').addEventListener('click', function() {
+      Notification.requestPermission().then(function(permission) {
+        if (permission === 'granted') {
+          navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification('Ramadan Reminder', {
+              body: 'This is your scheduled Ramadan reminder!',
+              icon: 'icon.png',
+              tag: 'ramadan-reminder'
+            });
+          });
         } else {
-          alert("Permission denied. Please allow notifications in your browser settings.");
+          alert('Notification permission denied.');
         }
       });
     });
-
-    function startNotifications() {
-      // First notification after 1 second
-      setTimeout(() => sendNotification(), 1000);
-
-      // Then repeat every 10 seconds
-      setInterval(() => {
-        sendNotification();
-      }, 10000);
-    }
-
-    function sendNotification() {
-      try {
-        new Notification("Ramadan Reminder", {
-          body: "Time for a short dua and reflection!",
-          icon: "https://cdn-icons-png.flaticon.com/512/1998/1998611.png" // a sample icon (publicly hosted)
-        });
-      } catch (error) {
-        console.error("Notification error:", error);
-      }
-    }
   </script>
-
 </body>
 </html>
