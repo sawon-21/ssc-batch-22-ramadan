@@ -1641,13 +1641,23 @@ function dismissInstallPrompt() {
     document.getElementById('install-prompt').style.display = 'none';
 }
 
-function registerServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => console.log('Service Worker registered:', registration.scope))
-            .catch(error => console.error('Service Worker registration failed:', error));
-    }
-}
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function (registration) {
+        console.log('Service Worker registered:', registration);
+
+        // Request notification permission
+        Notification.requestPermission().then(function (permission) {
+          if (permission === 'granted') {
+            console.log('Notification permission granted.');
+            // PushManager subscription would go here (Firebase or VAPID)
+          } else {
+            console.warn('Permission not granted for notifications');
+          }
+        });
+      });
+  }
+
 
 function handleInstallPrompt() {
     if (window.matchMedia('(display-mode: standalone)').matches) return;
