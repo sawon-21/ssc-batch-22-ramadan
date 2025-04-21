@@ -14,6 +14,7 @@
   <div class="container">
     <h2 class="mb-4">Web Notification Examples</h2>
     <button class="btn btn-primary mb-3" onclick="requestPermission()">Enable Notifications</button>
+    <button class="btn btn-success mb-4" onclick="liveTest()">Live Test Notification</button>
 
     <div class="btn-group-vertical w-100">
       <button class="btn btn-outline-secondary" onclick="basicNotification()">Basic Notification</button>
@@ -35,46 +36,53 @@
       });
     }
 
-    function basicNotification() {
+    function showNotification(title, options) {
       if (Notification.permission === "granted") {
-        new Notification("Hello!", {
-          body: "This is a basic notification.",
-          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png"
-        });
+        new Notification(title, options);
+      } else {
+        alert("Please enable notifications first.");
       }
+    }
+
+    function liveTest() {
+      showNotification("Live Test!", {
+        body: "This is a real-time test notification.",
+        icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png"
+      });
+    }
+
+    function basicNotification() {
+      showNotification("Hello!", {
+        body: "This is a basic notification.",
+        icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png"
+      });
     }
 
     function imageNotification() {
-      if (Notification.permission === "granted") {
-        new Notification("Image Notification", {
-          body: "This notification has an image.",
-          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png",
-          image: "https://picsum.photos/300/150"
-        });
-      }
+      showNotification("Image Notification", {
+        body: "This notification has an image.",
+        icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png",
+        image: "https://picsum.photos/300/150"
+      });
     }
 
     function actionNotification() {
-      if (Notification.permission === "granted") {
-        new Notification("Choose an action", {
-          body: "You can add custom actions (not all browsers support this).",
-          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png",
-          actions: [
-            { action: "yes", title: "Yes" },
-            { action: "no", title: "No" }
-          ]
-        });
-      }
+      showNotification("Choose an action", {
+        body: "You can add custom actions (not all browsers support this).",
+        icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png",
+        actions: [
+          { action: "yes", title: "Yes" },
+          { action: "no", title: "No" }
+        ]
+      });
     }
 
     function silentNotification() {
-      if (Notification.permission === "granted") {
-        new Notification("Silent Notification", {
-          body: "This notification is silent.",
-          silent: true,
-          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png"
-        });
-      }
+      showNotification("Silent Notification", {
+        body: "This notification is silent.",
+        silent: true,
+        icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png"
+      });
     }
   </script>
 </body>
