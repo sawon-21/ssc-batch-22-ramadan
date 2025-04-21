@@ -1,62 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Ramadan Notifications</title>
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <title>Web Push Notification Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding: 30px; background-color: #f8f9fa; }
+    .btn-group { margin-bottom: 20px; }
+  </style>
 </head>
-<body style="text-align:center; padding-top:50px;">
-  <h1>Ramadan Reminder</h1>
-  <p>Click the button to enable 3 daily notifications.</p>
-  <button id="notifyBtn" style="padding:10px 20px; font-size:18px;">Enable Notifications</button>
+<body>
+  <div class="container">
+    <h2 class="mb-4">Web Notification Examples</h2>
+    <button class="btn btn-primary mb-3" onclick="requestPermission()">Enable Notifications</button>
+
+    <div class="btn-group-vertical w-100">
+      <button class="btn btn-outline-secondary" onclick="basicNotification()">Basic Notification</button>
+      <button class="btn btn-outline-secondary" onclick="imageNotification()">Image Notification</button>
+      <button class="btn btn-outline-secondary" onclick="actionNotification()">Action Buttons</button>
+      <button class="btn btn-outline-secondary" onclick="silentNotification()">Silent Notification</button>
+    </div>
+  </div>
 
   <script>
-    // Register Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').then(() => {
-        console.log('Service Worker Registered');
+    function requestPermission() {
+      if (!("Notification" in window)) {
+        alert("Browser does not support notifications.");
+        return;
+      }
+
+      Notification.requestPermission().then(permission => {
+        alert("Permission status: " + permission);
       });
     }
 
-    document.getElementById('notifyBtn').addEventListener('click', function () {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          alert("Notifications Enabled. You'll receive 3 daily reminders.");
-          scheduleNotifications();
-        } else {
-          alert("Permission denied.");
-        }
-      });
-    });
+    function basicNotification() {
+      if (Notification.permission === "granted") {
+        new Notification("Hello!", {
+          body: "This is a basic notification.",
+          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png"
+        });
+      }
+    }
 
-    function scheduleNotifications() {
-      const times = [
-        { hour: 5, minute: 0, message: "Fajr Reminder – Start your day with prayer!" },
-        { hour: 13, minute: 0, message: "Dhuhr Reminder – Take a break and connect with Allah." },
-        { hour: 22, minute: 22, message: "Maghrib Reminder – Prepare to break your fast." }
-      ];
+    function imageNotification() {
+      if (Notification.permission === "granted") {
+        new Notification("Image Notification", {
+          body: "This notification has an image.",
+          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png",
+          image: "https://picsum.photos/300/150"
+        });
+      }
+    }
 
-      times.forEach(t => {
-        const now = new Date();
-        const target = new Date();
-        target.setHours(t.hour, t.minute, 0, 0);
+    function actionNotification() {
+      if (Notification.permission === "granted") {
+        new Notification("Choose an action", {
+          body: "You can add custom actions (not all browsers support this).",
+          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png",
+          actions: [
+            { action: "yes", title: "Yes" },
+            { action: "no", title: "No" }
+          ]
+        });
+      }
+    }
 
-        if (target < now) {
-          target.setDate(target.getDate() + 1); // Schedule for tomorrow
-        }
-
-        const delay = target - now;
-
-        setTimeout(() => {
-          navigator.serviceWorker.ready.then(reg => {
-            reg.showNotification("Ramadan Reminder", {
-              body: t.message,
-              icon: "icon.png"
-            });
-          });
-        }, delay);
-      });
+    function silentNotification() {
+      if (Notification.permission === "granted") {
+        new Notification("Silent Notification", {
+          body: "This notification is silent.",
+          silent: true,
+          icon: "https://cdn-icons-png.flaticon.com/512/727/727399.png"
+        });
+      }
     }
   </script>
 </body>
